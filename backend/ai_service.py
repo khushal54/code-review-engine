@@ -12,29 +12,49 @@ def fallback_review(code: str, language: str):
     issues = []
 
     if "password" in code.lower():
-        issues.append("Security issue: Hardcoded password detected")
+        issues.append({
+            "type": "Security",
+            "severity": "High",
+            "message": "Hardcoded password detected"
+        })
 
     if "print(" in code:
-        issues.append("Best practice: Avoid print statements in production")
+        issues.append({
+            "type": "Best Practice",
+            "severity": "Medium",
+            "message": "Avoid print statements in production"
+        })
 
     if "for" in code:
-        issues.append("Performance: Loop optimization may be possible")
+        issues.append({
+            "type": "Performance",
+            "severity": "Low",
+            "message": "Loop optimization may be possible"
+        })
 
-    return f"""
-⚠️ AI Review (Fallback Mode)
+    optimized_code = f"""
+# Optimized {language} Code
+import os
+import logging
 
-Bugs / Issues:
-- {"; ".join(issues) if issues else "No major issues found"}
+logging.basicConfig(level=logging.INFO)
 
-Optimized Suggestion:
-- Use environment variables for secrets
-- Add input validation
-- Use logging instead of print
+PASSWORD = os.getenv("APP_PASSWORD")
 
-Optimized Code (example):
-# Refactored {language} code
-# (Generated safely without external AI)
+for i in range(5):
+    logging.info(i)
 """
+
+    return {
+        "summary": f"{len(issues)} issues detected",
+        "issues": issues,
+        "recommendations": [
+            "Use environment variables for secrets",
+            "Replace print with logging",
+            "Validate inputs"
+        ],
+        "optimized_code": optimized_code.strip()
+    }
 
 
 def review_code(code: str, language: str):
