@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Intelligent Code Review & Rewrite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#020617] to-black text-white">
+
+  <!-- HEADER -->
+  <header class="p-6 border-b border-white/10 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-purple-400">🤖 Code Review Agent</h1>
+    <span class="text-green-400 text-sm">● API Connected</span>
+  </header>
+
+  <!-- HERO -->
+  <section class="text-center py-10">
+    <h2 class="text-4xl font-bold text-purple-400">Intelligent Code Review & Rewrite</h2>
+    <p class="text-gray-400 mt-2 max-w-2xl mx-auto">
+      Identify bugs, performance issues, security vulnerabilities,
+      and automatically rewrite optimized code.
+    </p>
+  </section>
+
+  <!-- MAIN GRID -->
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-6 px-6 pb-10">
+
+    <!-- LEFT PANEL -->
+    <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+      <h3 class="text-lg font-semibold mb-4">Your Code</h3>
+
+      <label class="text-sm text-gray-400">Language</label>
+      <select id="language" class="w-full mt-1 mb-4 p-2 rounded bg-black border border-white/10">
+        <option>Python</option>
+        <option>JavaScript</option>
+        <option>Java</option>
+      </select>
+
+      <label class="text-sm text-gray-400">Code</label>
+      <textarea id="code" class="w-full mt-1 h-56 p-3 rounded bg-black border border-white/10 font-mono text-sm"
+        placeholder="Paste your code here..."></textarea>
+
+      <button onclick="review()"
+        class="mt-4 w-full bg-purple-600 hover:bg-purple-700 transition py-2 rounded font-semibold">
+        🚀 Review Code
+      </button>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+      <h3 class="text-lg font-semibold mb-4">Review Results</h3>
+
+      <!-- SEVERITY CARDS -->
+      <div class="grid grid-cols-4 gap-3 text-center mb-6">
+        <div class="bg-red-500/20 rounded p-3">
+          <p class="text-red-400 font-bold" id="criticalCount">0</p>
+          <p class="text-xs text-gray-400">Critical</p>
+        </div>
+        <div class="bg-orange-500/20 rounded p-3">
+          <p class="text-orange-400 font-bold" id="highCount">0</p>
+          <p class="text-xs text-gray-400">High</p>
+        </div>
+        <div class="bg-yellow-500/20 rounded p-3">
+          <p class="text-yellow-400 font-bold" id="mediumCount">0</p>
+          <p class="text-xs text-gray-400">Medium</p>
+        </div>
+        <div class="bg-green-500/20 rounded p-3">
+          <p class="text-green-400 font-bold" id="lowCount">0</p>
+          <p class="text-xs text-gray-400">Low</p>
+        </div>
+      </div>
+
+      <!-- OUTPUT -->
+      <pre id="output"
+        class="bg-black rounded p-4 text-green-400 text-sm h-72 overflow-y-auto font-mono">
+Waiting for analysis...
+      </pre>
+    </div>
+
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
