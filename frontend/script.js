@@ -80,4 +80,5 @@ async function review() {
 function copyOptimized() {
   const text = document.getElementById("optimizedCode").textContent;
   navigator.clipboard.writeText(text);
+   alert("✅ Optimized code copied to clipboard!");
 }
