@@ -11,12 +11,18 @@
   <!-- HEADER -->
   <header class="p-6 border-b border-white/10 flex justify-between items-center">
     <h1 class="text-xl font-bold text-purple-400">🤖 Code Review Agent</h1>
-    <span class="text-green-400 text-sm">● API Connected</span>
+
+    <!-- API STATUS -->
+    <span id="apiStatus" class="text-gray-400 text-sm">
+      ● Checking API...
+    </span>
   </header>
 
   <!-- HERO -->
   <section class="text-center py-10">
-    <h2 class="text-4xl font-bold text-purple-400">Intelligent Code Review & Rewrite</h2>
+    <h2 class="text-4xl font-bold text-purple-400">
+      Intelligent Code Review & Rewrite
+    </h2>
     <p class="text-gray-400 mt-2 max-w-2xl mx-auto">
       Identify bugs, performance issues, security vulnerabilities,
       and automatically rewrite optimized code.
@@ -31,14 +37,16 @@
       <h3 class="text-lg font-semibold mb-4">Your Code</h3>
 
       <label class="text-sm text-gray-400">Language</label>
-      <select id="language" class="w-full mt-1 mb-4 p-2 rounded bg-black border border-white/10">
+      <select id="language"
+        class="w-full mt-1 mb-4 p-2 rounded bg-black border border-white/10">
         <option>Python</option>
         <option>JavaScript</option>
         <option>Java</option>
       </select>
 
       <label class="text-sm text-gray-400">Code</label>
-      <textarea id="code" class="w-full mt-1 h-56 p-3 rounded bg-black border border-white/10 font-mono text-sm"
+      <textarea id="code"
+        class="w-full mt-1 h-56 p-3 rounded bg-black border border-white/10 font-mono text-sm"
         placeholder="Paste your code here..."></textarea>
 
       <button onclick="review()"
@@ -48,36 +56,52 @@
     </div>
 
     <!-- RIGHT PANEL -->
-    <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
-      <h3 class="text-lg font-semibold mb-4">Review Results</h3>
+    <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 space-y-6">
+      <h3 class="text-lg font-semibold">Review Results</h3>
 
       <!-- SEVERITY CARDS -->
-      <div class="grid grid-cols-4 gap-3 text-center mb-6">
+      <div class="grid grid-cols-4 gap-3 text-center">
         <div class="bg-red-500/20 rounded p-3">
-          <p class="text-red-400 font-bold" id="criticalCount">0</p>
+          <p id="criticalCount" class="text-red-400 font-bold">0</p>
           <p class="text-xs text-gray-400">Critical</p>
         </div>
         <div class="bg-orange-500/20 rounded p-3">
-          <p class="text-orange-400 font-bold" id="highCount">0</p>
+          <p id="highCount" class="text-orange-400 font-bold">0</p>
           <p class="text-xs text-gray-400">High</p>
         </div>
         <div class="bg-yellow-500/20 rounded p-3">
-          <p class="text-yellow-400 font-bold" id="mediumCount">0</p>
+          <p id="mediumCount" class="text-yellow-400 font-bold">0</p>
           <p class="text-xs text-gray-400">Medium</p>
         </div>
         <div class="bg-green-500/20 rounded p-3">
-          <p class="text-green-400 font-bold" id="lowCount">0</p>
+          <p id="lowCount" class="text-green-400 font-bold">0</p>
           <p class="text-xs text-gray-400">Low</p>
         </div>
       </div>
 
-      <!-- OUTPUT -->
+      <!-- REVIEW TEXT -->
       <pre id="output"
-        class="bg-black rounded p-4 text-green-400 text-sm h-72 overflow-y-auto font-mono">
+        class="bg-black rounded p-4 text-green-400 text-sm h-56 overflow-y-auto font-mono">
 Waiting for analysis...
       </pre>
-    </div>
 
+      <!-- OPTIMIZED CODE (SEPARATE BLOCK - PRESERVED) -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <h4 class="font-semibold text-purple-400">Optimized Code</h4>
+          <button onclick="copyOptimized()"
+            class="text-xs bg-green-600 hover:bg-green-700 px-3 py-1 rounded">
+            📋 Copy
+          </button>
+        </div>
+
+        <pre id="optimizedCode"
+          class="bg-black rounded p-4 text-green-300 text-sm h-56 overflow-y-auto font-mono">
+Optimized code will appear here...
+        </pre>
+      </div>
+
+    </div>
   </main>
 
 <script src="script.js"></script>
